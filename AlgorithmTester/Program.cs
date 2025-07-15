@@ -9,6 +9,7 @@ public class Program
         Console.WriteLine("1. Test HasDuplicates method");
         Console.WriteLine("2. Test AreAnagrams method");
         Console.WriteLine("3. Test TwoSumSolver method");
+        Console.WriteLine("4. Test GroupAnagrams method");
         Console.WriteLine("0. Exit");
         Console.Write("Enter your choice: ");
 
@@ -24,6 +25,9 @@ public class Program
                 break;
             case "3":
                 TestTwoSumSolver();
+                break;
+            case "4":
+                TestGroupAnagrams();
                 break;
             case "0":
                 Console.WriteLine("Exiting...");
@@ -162,6 +166,48 @@ public class Program
         else
         {
             Console.WriteLine("Invalid input. Please enter valid numbers and target.");
+        }
+    }
+
+    private static void TestGroupAnagrams()
+    {
+        Console.WriteLine("\n=== Testing GroupAnagrams Method ===");
+
+        // Test cases
+        string[] words1 = { "eat", "tea", "tan", "ate", "nat", "bat" };
+        var grouped1 = GroupAnagrams.GroupAnagramsByIndexArray(words1);
+
+        Console.WriteLine("GroupAnagrams([\"eat\", \"tea\", \"tan\", \"ate\", \"nat\", \"bat\"]):");
+        Console.WriteLine(string.Join(", ", grouped1.Select(g => $"[{string.Join(", ", g)}]")));
+
+        // Interactive test
+        Console.WriteLine("\n--- Custom Test ---");
+        Console.Write("Enter comma-separated words (e.g., eat,tea,tan,ate,nat,bat): ");
+        string? userInput = Console.ReadLine();
+
+        if (!string.IsNullOrWhiteSpace(userInput))
+        {
+            try
+            {
+                string[] userWords = userInput.Split(',');
+                for (int i = 0; i < userWords.Length; i++)
+                {
+                    userWords[i] = userWords[i].Trim();
+                }
+
+                var userGrouped = GroupAnagrams.GroupAnagramsByIndexArray(userWords);
+                Console.WriteLine("Grouped anagrams:");
+                Console.WriteLine(string.Join(", ", userGrouped.Select(g => $"[{string.Join(", ", g)}]")));
+                
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error parsing input: {ex.Message}");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Invalid input. Please enter valid words.");
         }
     }
 }
