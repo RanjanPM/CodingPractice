@@ -8,6 +8,7 @@ public class Program
         Console.WriteLine("Select an option:");
         Console.WriteLine("1. Test HasDuplicates method");
         Console.WriteLine("2. Test AreAnagrams method");
+        Console.WriteLine("3. Test TwoSumSolver method");
         Console.WriteLine("0. Exit");
         Console.Write("Enter your choice: ");
 
@@ -20,6 +21,9 @@ public class Program
                 break;
             case "2":
                 TestAreAnagrams();
+                break;
+            case "3":
+                TestTwoSumSolver();
                 break;
             case "0":
                 Console.WriteLine("Exiting...");
@@ -109,6 +113,55 @@ public class Program
         else
         {
             Console.WriteLine("Invalid input. Both strings are required.");
+        }
+    }
+
+    private static void TestTwoSumSolver()
+    {
+        Console.WriteLine("\n=== Testing TwoSumSolver Method ===");
+
+        // Test cases
+        int[] nums1 = { 2, 7, 11, 15 };
+        int target1 = 9;
+        int[] nums2 = { 3, 2, 4 };
+        int target2 = 6;
+
+        int[] result1 = TwoSumSolver.TwoSum(nums1, target1);
+        int[] result2 = TwoSumSolver.TwoSum(nums2, target2);
+
+        Console.WriteLine($"TwoSum([2, 7, 11, 15], 9) => [{string.Join(", ", result1)}]");
+        Console.WriteLine($"TwoSum([3, 2, 4], 6) => [{string.Join(", ", result2)}]");
+
+        // Interactive test
+        Console.WriteLine("\n--- Custom Test ---");
+        Console.Write("Enter comma-separated numbers (e.g., 2,7,11,15): ");
+        string? userInput = Console.ReadLine();
+        Console.Write("Enter target value: ");
+        string? targetInput = Console.ReadLine();
+
+        if (!string.IsNullOrWhiteSpace(userInput) && !string.IsNullOrWhiteSpace(targetInput) && int.TryParse(targetInput, out int userTarget))
+        {
+            try
+            {
+                string[] parts = userInput.Split(',');
+                int[] userNums = new int[parts.Length];
+
+                for (int i = 0; i < parts.Length; i++)
+                {
+                    userNums[i] = int.Parse(parts[i].Trim());
+                }
+
+                int[] userResult = TwoSumSolver.TwoSum(userNums, userTarget);
+                Console.WriteLine($"TwoSum([{string.Join(", ", userNums)}], {userTarget}) => [{string.Join(", ", userResult)}]");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error parsing input: {ex.Message}");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Invalid input. Please enter valid numbers and target.");
         }
     }
 }
