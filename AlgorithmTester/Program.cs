@@ -10,6 +10,7 @@ public class Program
         Console.WriteLine("2. Test AreAnagrams method");
         Console.WriteLine("3. Test TwoSumSolver method");
         Console.WriteLine("4. Test GroupAnagrams method");
+        Console.WriteLine("5. Test TopKFrequentElements method");
         Console.WriteLine("0. Exit");
         Console.Write("Enter your choice: ");
 
@@ -28,6 +29,9 @@ public class Program
                 break;
             case "4":
                 TestGroupAnagrams();
+                break;
+            case "5":
+                TestTopKFrequentElements();
                 break;
             case "0":
                 Console.WriteLine("Exiting...");
@@ -208,6 +212,49 @@ public class Program
         else
         {
             Console.WriteLine("Invalid input. Please enter valid words.");
+        }
+    }
+
+    private static void TestTopKFrequentElements()
+    {
+        Console.WriteLine("\n=== Testing TopKFrequentElements Method ===");
+
+        // Test case
+        int[] nums = { 1, 1, 1, 2, 2, 3 };
+        int k = 2;
+        int[] result = TopKFrequentElements.TopKFrequent(nums, k);
+        Console.WriteLine($"TopKFrequent([1, 1, 1, 2, 2, 3], 2) => [{string.Join(", ", result)}]");
+
+        // Interactive test
+        Console.WriteLine("\n--- Custom Test ---");
+        Console.Write("Enter comma-separated numbers (e.g., 1,1,1,2,2,3): ");
+        string? userInput = Console.ReadLine();
+        Console.Write("Enter k value: ");
+        string? kInput = Console.ReadLine();
+
+        if (!string.IsNullOrWhiteSpace(userInput) && !string.IsNullOrWhiteSpace(kInput) && int.TryParse(kInput, out int userK))
+        {
+            try
+            {
+                string[] parts = userInput.Split(',');
+                int[] userNums = new int[parts.Length];
+
+                for (int i = 0; i < parts.Length; i++)
+                {
+                    userNums[i] = int.Parse(parts[i].Trim());
+                }
+
+                int[] userResult = TopKFrequentElements.TopKFrequent(userNums, userK);
+                Console.WriteLine($"TopKFrequent([{string.Join(", ", userNums)}], {userK}) => [{string.Join(", ", userResult)}]");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error parsing input: {ex.Message}");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Invalid input. Please enter valid numbers and k value.");
         }
     }
 }
