@@ -4,6 +4,8 @@ VisualStudioVersion = 17.5.2.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArraysAndHashing", "ArraysAndHashing\ArraysAndHashing.csproj", "{68E7357A-EC1C-FC66-59C6-E84E25A48DC9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwoPointers", "TwoPointers\TwoPointers.csproj", "{B1A1B2C3-D4E5-F6A7-89B0-1234567890AB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
