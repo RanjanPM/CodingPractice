@@ -7,6 +7,7 @@ public class Program
         Console.WriteLine("=== TwoPointers Project ===");
         Console.WriteLine("Select an option:");
         Console.WriteLine("1. Test ValidPalindrome");
+        Console.WriteLine("2. Test TwoSumTwo");
         Console.WriteLine("0. Exit");
         Console.Write("Enter your choice: ");
 
@@ -16,6 +17,9 @@ public class Program
             case "1":
                 TestValidPalindrome();
                 break;
+            case "2":
+                TestTwoSumTwo();
+                break;
             case "0":
                 Console.WriteLine("Exiting...");
                 break;
@@ -23,8 +27,41 @@ public class Program
                 Console.WriteLine("Invalid choice. Please try again.");
                 break;
         }
+    
     }
+    private static void TestTwoSumTwo()
+    {
+        Console.WriteLine("\n=== Testing TwoSumTwo ===");
+        int[] numbers = {2, 7, 11, 15};
+        int target = 9;
+        int[] result = TwoSumTwo.TwoSum(numbers, target);
+        Console.WriteLine($"Input: [2, 7, 11, 15], target = 9 => Output: [{result[0]}, {result[1]}]");
 
+        // Interactive test
+        Console.WriteLine("\n--- Custom Test ---");
+        Console.Write("Enter comma-separated sorted numbers (e.g., 2,7,11,15): ");
+        string? userInput = Console.ReadLine();
+        Console.Write("Enter target value: ");
+        string? targetInput = Console.ReadLine();
+        if (!string.IsNullOrWhiteSpace(userInput) && !string.IsNullOrWhiteSpace(targetInput) && int.TryParse(targetInput, out int userTarget))
+        {
+            try
+            {
+                string[] parts = userInput.Split(',');
+                int[] userNumbers = new int[parts.Length];
+                for (int i = 0; i < parts.Length; i++)
+                {
+                    userNumbers[i] = int.Parse(parts[i].Trim());
+                }
+                int[] userResult = TwoSumTwo.TwoSum(userNumbers, userTarget);
+                Console.WriteLine($"Output: [{userResult[0]}, {userResult[1]}]");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+        }
+    }
     private static void TestValidPalindrome()
     {
         Console.WriteLine("\n=== Testing ValidPalindrome ===");
