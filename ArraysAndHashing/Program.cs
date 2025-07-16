@@ -11,6 +11,7 @@ public class Program
         Console.WriteLine("3. Test TwoSumSolver method");
         Console.WriteLine("4. Test GroupAnagrams method");
         Console.WriteLine("5. Test TopKFrequentElements method");
+        Console.WriteLine("6. Test GetProductExceptSelf method");
         Console.WriteLine("0. Exit");
         Console.Write("Enter your choice: ");
 
@@ -33,6 +34,9 @@ public class Program
             case "5":
                 TestTopKFrequentElements();
                 break;
+            case "6":
+                TestProductExceptSelf();
+                break;
             case "0":
                 Console.WriteLine("Exiting...");
                 break;
@@ -46,6 +50,39 @@ public class Program
         Console.ReadKey();
     }
 
+    private static void TestProductExceptSelf()
+    {
+        Console.WriteLine("\n=== Testing GetProductExceptSelf Method ===");
+
+        // Test cases
+        int[] nums = { 1, 2, 3, 4 };
+        int[] result = ProductExceptSelf.GetProductExceptSelf(nums);
+        Console.WriteLine($"Input: [1, 2, 3, 4] => Output: [{string.Join(", ", result)}]");
+
+        // Interactive test
+        Console.WriteLine("\n--- Custom Test ---");
+        Console.Write("Enter comma-separated numbers (e.g., 1,2,3,4): ");
+        string? userInput = Console.ReadLine();
+
+        if (!string.IsNullOrWhiteSpace(userInput))
+        {
+            try
+            {
+                string[] parts = userInput.Split(',');
+                int[] userArray = new int[parts.Length];
+                for (int i = 0; i < parts.Length; i++)
+                {
+                    userArray[i] = int.Parse(parts[i].Trim());
+                }
+                int[] userResult = ProductExceptSelf.GetProductExceptSelf(userArray);
+                Console.WriteLine($"Output: [{string.Join(", ", userResult)}]");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error parsing input: {ex.Message}");
+            }
+        }
+    }
     private static void TestHasDuplicates()
     {
         Console.WriteLine("\n=== Testing HasDuplicates Method ===");
