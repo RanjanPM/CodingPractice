@@ -14,6 +14,7 @@ public class Program
         Console.WriteLine("6. Test GetProductExceptSelf method");
         Console.WriteLine("7. Test IsValidSudoku method");
         Console.WriteLine("8. Test EncodeAndDecodeString method");
+        Console.WriteLine("9. Test LongestConsecutiveSequence method");
         Console.WriteLine("0. Exit");
         Console.Write("Enter your choice: ");
 
@@ -45,6 +46,9 @@ public class Program
             case "8":
                 TestEncodeAndDecodeString();
                 break;   
+            case "9":
+                TestLongestConsecutiveSequence();
+                break;    
             case "0":
                 Console.WriteLine("Exiting...");
                 break;
@@ -58,7 +62,37 @@ public class Program
         Console.WriteLine("\nPress any key to exit...");
         Console.ReadKey();
     }
+    private static void TestLongestConsecutiveSequence()
+    {
+        Console.WriteLine("\n=== Testing LongestConsecutiveSequence Method ===");
 
+        int[] nums = {100, 4, 200, 1, 3, 2};
+        int result = LongestConsecutiveSequence.LongestConsecutive(nums);
+        Console.WriteLine($"Input: [100, 4, 200, 1, 3, 2] => Longest consecutive sequence length: {result}");
+
+        // Interactive test
+        Console.WriteLine("\n--- Custom Test ---");
+        Console.Write("Enter comma-separated numbers (e.g., 100,4,200,1,3,2): ");
+        string? userInput = Console.ReadLine();
+        if (!string.IsNullOrWhiteSpace(userInput))
+        {
+            try
+            {
+                string[] parts = userInput.Split(',');
+                int[] userNums = new int[parts.Length];
+                for (int i = 0; i < parts.Length; i++)
+                {
+                    userNums[i] = int.Parse(parts[i].Trim());
+                }
+                int userResult = LongestConsecutiveSequence.LongestConsecutive(userNums);
+                Console.WriteLine($"Longest consecutive sequence length: {userResult}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error parsing input: {ex.Message}");
+            }
+        }
+    }
     private static void TestEncodeAndDecodeString()
     {
         Console.WriteLine("\n=== Testing EncodeAndDecodeString Method ===");
