@@ -5,6 +5,10 @@ public class TopKFrequentElements
 {
     public static int[] TopKFrequent(int[] nums, int k)
     {
+        if (nums == null || nums.Length == 0 || k <= 0)
+            return Array.Empty<int>();
+        if (k == nums.Length)
+            return nums;
         // Step 1: Count frequencies
         var freqDict = new Dictionary<int, int>();
         foreach (var num in nums)
