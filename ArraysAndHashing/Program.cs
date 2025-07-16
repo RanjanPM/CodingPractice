@@ -12,6 +12,7 @@ public class Program
         Console.WriteLine("4. Test GroupAnagrams method");
         Console.WriteLine("5. Test TopKFrequentElements method");
         Console.WriteLine("6. Test GetProductExceptSelf method");
+        Console.WriteLine("7. Test IsValidSudoku method");
         Console.WriteLine("0. Exit");
         Console.Write("Enter your choice: ");
 
@@ -37,6 +38,9 @@ public class Program
             case "6":
                 TestProductExceptSelf();
                 break;
+            case "7":
+                TestIsValidSudoku();
+                break;
             case "0":
                 Console.WriteLine("Exiting...");
                 break;
@@ -50,6 +54,40 @@ public class Program
         Console.ReadKey();
     }
 
+    private static void TestIsValidSudoku()
+    {
+        Console.WriteLine("\n=== Testing IsValidSudoku Method ===");
+
+        char[][] validBoard = new char[][]
+        {
+            new char[] {'5','3','.','.','7','.','.','.','.'},
+            new char[] {'6','.','.','1','9','5','.','.','.'},
+            new char[] {'.','9','8','.','.','.','.','6','.'},
+            new char[] {'8','.','.','.','6','.','.','.','3'},
+            new char[] {'4','.','.','8','.','3','.','.','1'},
+            new char[] {'7','.','.','.','2','.','.','.','6'},
+            new char[] {'.','6','.','.','.','.','2','8','.'},
+            new char[] {'.','.','.','4','1','9','.','.','5'},
+            new char[] {'.','.','.','.','8','.','.','7','9'}
+        };
+        bool isValid = ValidSoduku.IsValidSudoku(validBoard);
+        Console.WriteLine($"Sample valid board: {isValid}");
+
+        char[][] invalidBoard = new char[][]
+        {
+            new char[] {'8','3','.','.','7','.','.','.','.'},
+            new char[] {'6','.','.','1','9','5','.','.','.'},
+            new char[] {'.','9','8','.','.','.','.','6','.'},
+            new char[] {'8','.','.','.','6','.','.','.','3'},
+            new char[] {'4','.','.','8','.','3','.','.','1'},
+            new char[] {'7','.','.','.','2','.','.','.','6'},
+            new char[] {'.','6','.','.','.','.','2','8','.'},
+            new char[] {'.','.','.','4','1','9','.','.','5'},
+            new char[] {'.','.','.','.','8','.','.','7','9'}
+        };
+        bool isInvalid = ValidSoduku.IsValidSudoku(invalidBoard);
+        Console.WriteLine($"Sample invalid board: {isInvalid}");
+    }
     private static void TestProductExceptSelf()
     {
         Console.WriteLine("\n=== Testing GetProductExceptSelf Method ===");
