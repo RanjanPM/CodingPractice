@@ -13,6 +13,7 @@ public class Program
         Console.WriteLine("5. Test TopKFrequentElements method");
         Console.WriteLine("6. Test GetProductExceptSelf method");
         Console.WriteLine("7. Test IsValidSudoku method");
+        Console.WriteLine("8. Test EncodeAndDecodeString method");
         Console.WriteLine("0. Exit");
         Console.Write("Enter your choice: ");
 
@@ -41,6 +42,9 @@ public class Program
             case "7":
                 TestIsValidSudoku();
                 break;
+            case "8":
+                TestEncodeAndDecodeString();
+                break;   
             case "0":
                 Console.WriteLine("Exiting...");
                 break;
@@ -49,9 +53,34 @@ public class Program
                 break;
         }
 
+
         // Keep console open
         Console.WriteLine("\nPress any key to exit...");
         Console.ReadKey();
+    }
+
+    private static void TestEncodeAndDecodeString()
+    {
+        Console.WriteLine("\n=== Testing EncodeAndDecodeString Method ===");
+
+        var strs = new List<string> { "hello", "world", "foo", "bar" };
+        string encoded = EncodeAndDecodeString.Encode(strs);
+        Console.WriteLine($"Encoded: {encoded}");
+        var decoded = EncodeAndDecodeString.Decode(encoded);
+        Console.WriteLine($"Decoded: [{string.Join(", ", decoded)}]");
+
+        // Interactive test
+        Console.WriteLine("\n--- Custom Test ---");
+        Console.Write("Enter comma-separated strings (e.g., a,b,c): ");
+        string? userInput = Console.ReadLine();
+        if (!string.IsNullOrWhiteSpace(userInput))
+        {
+            var userList = new List<string>(userInput.Split(','));
+            string userEncoded = EncodeAndDecodeString.Encode(userList);
+            Console.WriteLine($"Encoded: {userEncoded}");
+            var userDecoded = EncodeAndDecodeString.Decode(userEncoded);
+            Console.WriteLine($"Decoded: [{string.Join(", ", userDecoded)}]");
+        }
     }
 
     private static void TestIsValidSudoku()
