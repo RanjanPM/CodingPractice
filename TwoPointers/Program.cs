@@ -8,6 +8,8 @@ public class Program
         Console.WriteLine("Select an option:");
         Console.WriteLine("1. Test ValidPalindrome");
         Console.WriteLine("2. Test TwoSumTwo");
+        Console.WriteLine("3. Test ThreeSum");
+        Console.WriteLine("4. Test ContainerWithMostWater");
         Console.WriteLine("0. Exit");
         Console.Write("Enter your choice: ");
 
@@ -20,6 +22,12 @@ public class Program
             case "2":
                 TestTwoSumTwo();
                 break;
+            case "3":
+                TestThreeSum();
+                break;
+            case "4":
+                TestContainerWithMostWater();
+                break;
             case "0":
                 Console.WriteLine("Exiting...");
                 break;
@@ -27,8 +35,80 @@ public class Program
                 Console.WriteLine("Invalid choice. Please try again.");
                 break;
         }
-    
     }
+
+    private static void TestContainerWithMostWater()
+    {
+        Console.WriteLine("\n=== Testing ContainerWithMostWater ===");
+        int[] height = {1,8,6,2,5,4,8,3,7};
+        int maxArea = ContainerWithMostWater.MaxArea(height);
+        Console.WriteLine("Input: [1,8,6,2,5,4,8,3,7]");
+        Console.WriteLine($"Max Area: {maxArea}");
+
+        // Interactive test
+        Console.WriteLine("\n--- Custom Test ---");
+        Console.Write("Enter comma-separated heights (e.g., 1,8,6,2,5,4,8,3,7): ");
+        string? userInput = Console.ReadLine();
+        if (!string.IsNullOrWhiteSpace(userInput))
+        {
+            try
+            {
+                string[] parts = userInput.Split(',');
+                int[] userHeights = new int[parts.Length];
+                for (int i = 0; i < parts.Length; i++)
+                {
+                    userHeights[i] = int.Parse(parts[i].Trim());
+                }
+                int userMaxArea = ContainerWithMostWater.MaxArea(userHeights);
+                Console.WriteLine($"Max Area: {userMaxArea}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+        }
+    }
+
+    private static void TestThreeSum()
+    {
+        Console.WriteLine("\n=== Testing ThreeSum ===");
+        int[] nums = {-1, 0, 1, 2, -1, -4};
+        var result = ThreeSum.FindThreeSum(nums);
+        Console.WriteLine("Input: [-1, 0, 1, 2, -1, -4]");
+        Console.WriteLine("Triplets:");
+        foreach (var triplet in result)
+        {
+            Console.WriteLine($"[{string.Join(", ", triplet)}]");
+        }
+
+        // Interactive test
+        Console.WriteLine("\n--- Custom Test ---");
+        Console.Write("Enter comma-separated numbers (e.g., -1,0,1,2,-1,-4): ");
+        string? userInput = Console.ReadLine();
+        if (!string.IsNullOrWhiteSpace(userInput))
+        {
+            try
+            {
+                string[] parts = userInput.Split(',');
+                int[] userNums = new int[parts.Length];
+                for (int i = 0; i < parts.Length; i++)
+                {
+                    userNums[i] = int.Parse(parts[i].Trim());
+                }
+                var userResult = ThreeSum.FindThreeSum(userNums);
+                Console.WriteLine("Triplets:");
+                foreach (var triplet in userResult)
+                {
+                    Console.WriteLine($"[{string.Join(", ", triplet)}]");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+        }
+    }
+
     private static void TestTwoSumTwo()
     {
         Console.WriteLine("\n=== Testing TwoSumTwo ===");
