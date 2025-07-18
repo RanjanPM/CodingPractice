@@ -10,6 +10,7 @@ public class Program
         Console.WriteLine("2. Test TwoSumTwo");
         Console.WriteLine("3. Test ThreeSum");
         Console.WriteLine("4. Test ContainerWithMostWater");
+        Console.WriteLine("5. Test TrappingRainWater");
         Console.WriteLine("0. Exit");
         Console.Write("Enter your choice: ");
 
@@ -28,12 +29,47 @@ public class Program
             case "4":
                 TestContainerWithMostWater();
                 break;
+            case "5":
+                TestTrappingRainWater();
+                break;
             case "0":
                 Console.WriteLine("Exiting...");
                 break;
             default:
                 Console.WriteLine("Invalid choice. Please try again.");
                 break;
+        }
+    }
+
+    private static void TestTrappingRainWater()
+    {
+        Console.WriteLine("\n=== Testing TrappingRainWater ===");
+        int[] height = {0,1,0,2,1,0,1,3,2,1,2,1};
+        int trapped = TrappingRainWater.Trap(height);
+        Console.WriteLine("Input: [0,1,0,2,1,0,1,3,2,1,2,1]");
+        Console.WriteLine($"Trapped Water: {trapped}");
+
+        // Interactive test
+        Console.WriteLine("\n--- Custom Test ---");
+        Console.Write("Enter comma-separated heights (e.g., 0,1,0,2,1,0,1,3,2,1,2,1): ");
+        string? userInput = Console.ReadLine();
+        if (!string.IsNullOrWhiteSpace(userInput))
+        {
+            try
+            {
+                string[] parts = userInput.Split(',');
+                int[] userHeights = new int[parts.Length];
+                for (int i = 0; i < parts.Length; i++)
+                {
+                    userHeights[i] = int.Parse(parts[i].Trim());
+                }
+                int userTrapped = TrappingRainWater.Trap(userHeights);
+                Console.WriteLine($"Trapped Water: {userTrapped}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
         }
     }
 
